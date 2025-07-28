@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messagescramble</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            gap: .5em;
+        }
+        label {
+            margin-top: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="#">
+        <label for="clearText">Enter text:</label>
+        <textarea type="text" id="clearText" name="clearText" required></textarea>
+        <label for="key">Key:</label>
+        <textarea type="text" id="key" name="key" required></textarea>
+        <div class="buttons">
+            <button type="submit" id="encodeButton">Encode</button>
+            <button type="submit" id="decodeButton">Decode</button>
+        </div>
+        <label for="encryptedText">Encrypted output:</label>
+        <textarea type="text" id="encryptedText" name="encryptedText"></textarea>
+    </form>
+    
+
+<script type="module" src="messagescramble.js">
+</script>
+<script type="module">
+    import { encode, decode } from './messagescramble.js';
+    document.querySelector('form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const message = document.querySelector('#clearText').value;
+            const key = document.querySelector('#key').value;
+            const decodedText = event.submitter.id === 'decodeButton' ? 
+                    decode(message, key): 
+                    encode(message, key);
+            if (decodedText.missing && decodedText.missing.length > 0) {
+                alert(`The following characters were not found in the key: ${decodedText.missing.join(', ')}`);
+            }
+            document.getElementById('encryptedText').value = decodedText.message;
+        });
+
+let dec = encode("Hello World", "abscdefghijklmnopqrstuvwxyz");
+console.log(dec);
+console.log(decode(dec.message, "abscdefghijklmnopqrstuvwxyz"));
+</script>
+</body>
+</html>
