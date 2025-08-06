@@ -16,10 +16,14 @@ textarea, input, button {
     padding: 5px;
     border-radius: 5px;
 }
+h1 {
+    color: #fff;
+    text-align: center;
+}
 form {
     display: flex;
     flex-direction: column;
-    max-width: 40em;
+    max-width: 30em;
     gap: .5em;
     margin: 1em auto
 }
@@ -33,6 +37,10 @@ textarea {
 }
 button {
     margin-top: 10px;
+}
+output {
+    padding: 10px;
+    color: lightcoral;
 }
 .buttons {
     display: flex;
