@@ -24,7 +24,7 @@ const encode = (clearText,key) => {
         let randChar = String.fromCharCode(Math.floor(25 * Math.random() + 97));
         return randChar + k;    
     }).join('');
-    return {message:encodedText, missing:missingChars};    
+    return {"message":encodedText, "missing":missingChars};    
 }
 const decode = (message, key) => {
     message = message.replace(/[a-z]/g,'±');
@@ -32,7 +32,7 @@ const decode = (message, key) => {
         if (num.length === 0) return;
         message = message.replace(num,key[num]);
     });
-    return {message: message.replace(/±/g,'')};
+    return {"message": message.replace(/±/g,'')};
 };
 export { encode, decode }
 

@@ -10,7 +10,7 @@ document.querySelector('form').addEventListener('submit', (event) => {
             encode(message, key);
     if (decodedText.missing && decodedText.missing.length > 0) {
         let chars = new Set(decodedText.missing);
-        document.querySelector('output').innerText = msg + ` ${[...chars].join(', ')}`;
+        document.querySelector('output').innerText = `${msg} ${[...chars].join(', ')}`;
     }
     document.getElementById('encryptedText').value = decodedText.message;
 });
